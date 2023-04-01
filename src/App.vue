@@ -1,5 +1,5 @@
 <template>
-  <MainPage msg="Welcome to Your Vue.js App"/>
+  <MainPage/>
 </template>
 
 <script>
@@ -14,8 +14,10 @@ export default {
 </script>
 
 <style>
+@import './vendor/normalize.css';
+@import './vendor/TenorSans.css';
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Tenor Sans', Avenir, Helvetica, Serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -24,5 +26,6 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  background-color: #000b24;
 }
 </style>
