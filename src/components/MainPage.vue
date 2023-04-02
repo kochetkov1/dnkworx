@@ -1,10 +1,21 @@
 <template>
   <main ref='vantaRef' class="main">
-    <div class="main__header-block">
-      <h1 class="main__title">DNKWORX</h1>
-      <hr class="main__line"/>
-      <p class="main__subtitle">Студия разработки сайтов Дмитрия Кочеткова</p>
-    </div>
+    <section class="main__header">
+      <div>
+        <h1 class="main__title">DNKWORX</h1>
+        <hr class="main__line" />
+        <p class="main__subtitle">Студия разработки сайтов Дмитрия Кочеткова</p>
+      </div>
+      <div class="main__contacts">
+        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"><img class="main__telegram-icon" src="../images/icon-telegram.svg" alt="Telegram"></a>
+        <!-- <p class="main__contact">kochetkov111</p> -->
+        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank">kochetkov111</a>
+      </div>
+    </section>
+    <section class="main__navigation">
+      <div class="wave1"></div>
+      <div class="wave2"></div>
+    </section>
   </main>
 </template>
 
@@ -22,7 +33,7 @@ export default {
       amplitudeFactor: 0.8,
       xOffset: 0.275,
       yOffset: 0.275,
-      size: 1.75,
+      size: 2.75,
       speed: .8,
       // scaleMobile: window.devicePixelRatio,
       // scale: window.devicePixelRatio,
@@ -47,14 +58,29 @@ export default {
   padding: 0;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
 }
 
-.main__header-block {
+.main__header {
+  width: 100%;
   padding: 90px 0 0 70px;
   align-self: flex-start;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .main__title {
@@ -73,13 +99,47 @@ export default {
   margin-left: 6px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.main__contacts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 140px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.main__contact {
+  font-size: 28px;
+  color: #f0f8ff;
+}
+
+.main__telegram-icon {
+  width: 50px;
+  height: 50px;
+
+  margin: 0 10px 0 0;
+}
+
+.main__navigation {
+  max-width: 820px;
+  min-height: 100px;
+
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px #353535;
+  transition: 1s;
+
+  border-radius: 10px;
+
+  margin: 50px 0 0 70px;
+}
+
+.main__navigation:hover {
+  box-shadow: 0 0 19px #444444;
+  transition: 1s;
+}
+
+@keyframes wave {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
