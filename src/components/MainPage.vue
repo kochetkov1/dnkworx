@@ -7,14 +7,27 @@
         <p class="main__subtitle">Студия разработки сайтов Дмитрия Кочеткова</p>
       </div>
       <div class="main__contacts">
-        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"><img class="main__telegram-icon" src="../images/icon-telegram.svg" alt="Telegram"></a>
-        <!-- <p class="main__contact">kochetkov111</p> -->
-        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank">kochetkov111</a>
+        <div class="main__contacts-block">
+          <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"><img class="main__icon"
+              src="../images/icon-telegram.svg" alt="Telegram" title="Перейти в Telegram"></a>
+          <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"
+            title="Перейти в Telegram">kochetkov111</a>
+        </div>
+        <div class="main__contacts-block">
+          <a class="main__contact" @click.prevent="copyToClipboard" title="Скопировать E-mail"><img class="main__icon"
+              src="../images/icon-mail.svg" alt="Нажмите, чтобы скопировать"></a>
+          <a class="main__contact" @click.prevent="copyToClipboard" ref="email" value="dnkworx@vk.com"
+            title="Скопировать E-mail">dnkworx@vk.com</a>
+        </div>
+        <p class="main__copy-message" v-bind:class="{ active: isHidden }">Скопировано</p>
       </div>
     </section>
     <section class="main__navigation">
-      <div class="wave1"></div>
-      <div class="wave2"></div>
+      <h3 class="main__mini-title">О студии и её основателе</h3>
+      <p class="main__text">Меня зовут Дмитрий Кочетков. Я веб-разработчик, который получил свои навыки, обучаясь в Яндексе. Чтобы
+        процесс заказа сайта был удобным и понятным, я сделал для вас конфигуратор. В нём вы сможете выбрать нужные опции,
+        узнать предварительную стоимость, а затем связаться со мной и получить сайт, разработанный по самым современным
+        технологиям.</p>
     </section>
   </main>
 </template>
@@ -25,6 +38,11 @@ import HALO from 'vanta/dist/vanta.halo.min'
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 export default {
+  data() {
+    return {
+      isHidden: false,
+    }
+  },
   mounted() {
     this.vantaEffect = HALO({
       el: this.$refs.vantaRef,
@@ -46,6 +64,15 @@ export default {
     if (this.vantaEffect) {
       this.vantaEffect.destroy()
     }
+  },
+  methods: {
+    copyToClipboard() {
+      window.navigator.clipboard.writeText(this.$refs.email.textContent);
+      this.isHidden = !this.isHidden;
+      setTimeout(() => {
+        this.isHidden = !this.isHidden;
+      }, 1000)
+    },
   }
 }
 </script>
@@ -86,6 +113,7 @@ li {
 .main__title {
   font-size: 72px;
   color: #f0f8ff;
+  cursor: default;
 }
 
 .main__line {
@@ -97,49 +125,92 @@ li {
   color: #f0f8ff;
   margin-top: 10px;
   margin-left: 6px;
+  cursor: default;
 }
 
 .main__contacts {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 140px;
+}
+
+.main__contacts-block {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  margin-right: 140px;
+}
+
+.main__contacts-block:hover {
+  opacity: .8;
+  transition: opacity .5s ease;
 }
 
 .main__contact {
   font-size: 28px;
   color: #f0f8ff;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.main__telegram-icon {
+.main__icon {
   width: 50px;
   height: 50px;
-
   margin: 0 10px 0 0;
+}
+
+.main__icon:hover {
+  filter: blur(50%);
+}
+
+.main__copy-message {
+  font-size: 18px;
+  color: #f0f8ff;
+  margin: 0 0 0 175px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity .5s ease;
+  border: 2px solid #f0f8ff;
+  border-radius: 0 20px 20px 20px;
+}
+
+.active {
+  opacity: .8;
+  transition: opacity .5s ease;
 }
 
 .main__navigation {
   max-width: 820px;
   min-height: 100px;
 
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 2, 26, 0.45);
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 15px #353535;
+  box-shadow: 0 0 15px #0f1329;
   transition: 1s;
 
-  border-radius: 10px;
+  border-radius: 20px;
 
   margin: 50px 0 0 70px;
+  padding: 20px;
 }
 
 .main__navigation:hover {
-  box-shadow: 0 0 19px #444444;
+  box-shadow: 0 0 19px #222222;
   transition: 1s;
 }
 
-@keyframes wave {
-  100% {
-    transform: rotate(360deg);
-  }
+.main__mini-title {
+  font-size: 28px;
+  color: #f0f8ff;
+  /* text-decoration: underline; */
+  max-width: fit-content;
+  cursor: default;
+}
+.main__text {
+  font-size: 17px;
+  color: #f0f8ff;
+  text-align: left;
+  margin-top: 20px;
+  cursor: default;
 }
 </style>
