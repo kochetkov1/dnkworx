@@ -28,4 +28,7 @@ body {
   padding: 0;
   background-color: #000b24;
 }
+::-webkit-scrollbar {
+  width: 0;
+}
 </style>

@@ -29,15 +29,21 @@
         узнать предварительную стоимость, а затем связаться со мной и получить сайт, разработанный по самым современным
         технологиям.</p>
     </section>
+    <ConfiguratorModule></ConfiguratorModule>
   </main>
 </template>
 
 <script>
 import * as THREE from "three";
-import HALO from 'vanta/dist/vanta.halo.min'
+import HALO from 'vanta/dist/vanta.halo.min';
+import ConfiguratorModule from './ConfiguratorModule.vue';
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 export default {
+  name: 'MainPage',
+  components: {
+    ConfiguratorModule
+  },
   data() {
     return {
       isHidden: false,
@@ -57,7 +63,7 @@ export default {
       // scale: window.devicePixelRatio,
       scaleMobile: 1,
       scale: 0.5,
-      minHeight: 900.00,
+      minHeight: 980.00,
     })
   },
   beforeUnmount() {
@@ -102,7 +108,7 @@ li {
 
 .main__header {
   width: 100%;
-  padding: 90px 0 0 70px;
+  padding: 50px 0 0 70px;
   align-self: flex-start;
 
   display: flex;
@@ -190,7 +196,7 @@ li {
 
   border-radius: 20px;
 
-  margin: 50px 0 0 70px;
+  margin: 0 0 0 70px;
   padding: 20px;
 }
 
