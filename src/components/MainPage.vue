@@ -50,6 +50,9 @@ export default {
     }
   },
   mounted() {
+    // const screenHeight = window.screen.height;
+    const screenHeight = window.screen.availHeight;
+
     this.vantaEffect = HALO({
       el: this.$refs.vantaRef,
       THREE: THREE,
@@ -63,7 +66,8 @@ export default {
       // scale: window.devicePixelRatio,
       scaleMobile: 1,
       scale: 0.5,
-      minHeight: 980.00,
+      // minHeight: 980.00,
+      minHeight: screenHeight,
     })
   },
   beforeUnmount() {
