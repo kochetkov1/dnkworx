@@ -8,38 +8,38 @@
         <form class="configuration__form-block">
           <div class="configuration__radio-row">
             <input id="1" type="radio" name="r" value="15000.0000000001" v-model="mainPrice" checked>
-            <label for="1">Пока не знаю</label>
+            <label class="configuration__label" for="1">Пока не знаю</label>
           </div>
           <div class="configuration__radio-row">
             <input id="2" type="radio" name="r" value="15000.000000001" v-model="mainPrice">
-            <label for="2">Одностраничный</label>
+            <label class="configuration__label" for="2">Одностраничный</label>
           </div>
           <div class="configuration__radio-row">
             <input id="3" type="radio" name="r" value="30000" v-model="mainPrice">
-            <label for="3">До 5 страниц</label>
+            <label class="configuration__label" for="3">До 5 страниц</label>
           </div>
           <div class="configuration__radio-row">
             <input id="4" type="radio" name="r" value="45000" v-model="mainPrice">
-            <label for="4">Более 5 страниц</label>
+            <label class="configuration__label" for="4">Более 5 страниц</label>
           </div>
         </form>
         <p class="configuration__text">Количество блоков на странице</p>
         <form class="configuration__form-block">
           <div class="configuration__radio-row">
             <input id="5" type="radio" name="r" value="1" v-model="multiplierDiv" checked>
-            <label for="5">Пока не знаю</label>
+            <label class="configuration__label" for="5">Пока не знаю</label>
           </div>
           <div class="configuration__radio-row">
             <input id="6" type="radio" name="r" value="1.000000001" v-model="multiplierDiv">
-            <label for="6">До 3 блоков</label>
+            <label class="configuration__label" for="6">До 3 блоков</label>
           </div>
           <div class="configuration__radio-row">
             <input id="7" type="radio" name="r" value="1.25" v-model="multiplierDiv">
-            <label for="7">4 - 6 блоков</label>
+            <label class="configuration__label" for="7">4 - 6 блоков</label>
           </div>
           <div class="configuration__radio-row">
             <input id="8" type="radio" name="r" value="1.5" v-model="multiplierDiv">
-            <label for="8">Более 6 блоков</label>
+            <label class="configuration__label" for="8">Более 6 блоков</label>
           </div>
         </form>
       </div>
@@ -48,34 +48,34 @@
         <form class="configuration__form-block">
           <div class="configuration__radio-row">
             <input id="9" type="radio" name="r" value="1" v-model="multiplierStaticOrDynamic" checked>
-            <label for="9">Пока не знаю</label>
+            <label class="configuration__label" for="9">Пока не знаю</label>
           </div>
           <div class="configuration__radio-row">
             <input id="10" type="radio" name="r" value="1.000000001" v-model="multiplierStaticOrDynamic">
-            <label for="10">Статический</label>
+            <label class="configuration__label" for="10">Статический</label>
           </div>
           <div class="configuration__radio-row">
             <input id="11" type="radio" name="r" value="1.2" v-model="multiplierStaticOrDynamic">
-            <label for="11">Частично изменяемый</label>
+            <label class="configuration__label" for="11">Частично изменяемый</label>
           </div>
           <div class="configuration__radio-row">
             <input id="12" type="radio" name="r" value="2.2" v-model="multiplierStaticOrDynamic">
-            <label for="12">Динамический</label>
+            <label class="configuration__label" for="12">Динамический</label>
           </div>
         </form>
         <p class="configuration__text">Изменяемая тема на сайте</p>
         <form class="configuration__form-block">
           <div class="configuration__radio-row">
             <input id="13" type="radio" name="r" value="0" v-model="priceTheme" checked>
-            <label for="13">Пока не знаю</label>
+            <label class="configuration__label" for="13">Пока не знаю</label>
           </div>
           <div class="configuration__radio-row">
             <input id="14" type="radio" name="r" value="0.000000001" v-model="priceTheme">
-            <label for="14">Не нужна</label>
+            <label class="configuration__label" for="14">Не нужна</label>
           </div>
           <div class="configuration__radio-row">
             <input id="15" type="radio" name="r" value="5000" v-model="priceTheme">
-            <label for="15">Нужна</label>
+            <label class="configuration__label" for="15">Нужна</label>
           </div>
         </form>
       </div>
@@ -84,15 +84,15 @@
         <form class="configuration__form-block">
           <div class="configuration__radio-row">
             <input id="16" type="radio" name="r" value="1" v-model="multiplierDesign" checked>
-            <label for="16">Уже есть</label>
+            <label class="configuration__label" for="16">Уже есть</label>
           </div>
           <div class="configuration__radio-row">
             <input id="18" type="radio" name="r" value="1.2" v-model="multiplierDesign">
-            <label for="18">Нужно соблюсти лишь общую стилистику</label>
+            <label class="configuration__label" for="18">Нужно соблюсти лишь общую стилистику</label>
           </div>
           <div class="configuration__radio-row">
             <input id="19" type="radio" name="r" value="1.5" v-model="multiplierDesign">
-            <label for="19">Нужна проработка с дизайнером</label>
+            <label class="configuration__label" for="19">Нужна проработка с дизайнером</label>
           </div>
         </form>
 
@@ -346,5 +346,59 @@ export default {
   100% {
     transform: scale(1, 1)
   }
+}
+
+@media screen and (max-width: 881px) {
+  .configuration {
+  margin: 0 30px 0 30px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.configuration__text {
+  font-size: 24px;
+}
+
+.configuration__form-block .configuration__label {
+  font-size: 22px;
+}
+
+.configuration__card-box {
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.configuration__form-block  {
+  padding: 0 0 10px 0;
+}
+
+}
+
+@media screen and (max-width: 681px) {
+  .configuration__text {
+  font-size: 22px;
+}
+
+.configuration__form-block .configuration__label {
+  font-size: 20px;
+}
+}
+
+@media screen and (max-width: 581px) {
+  .configuration {
+    margin: 0 10px 0 10px;
+}
+  .configuration__form-block  {
+  max-width: 320px;
+}
+}
+
+@media screen and (max-width: 441px) {
+
 }
 </style>

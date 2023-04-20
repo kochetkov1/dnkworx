@@ -64,7 +64,7 @@ export default {
       speed: .8,
       // scaleMobile: window.devicePixelRatio,
       // scale: window.devicePixelRatio,
-      scaleMobile: 1,
+      scaleMobile: 27,
       scale: 0.5,
       // minHeight: 980.00,
       minHeight: screenHeight,
@@ -222,5 +222,57 @@ li {
   text-align: left;
   margin-top: 20px;
   cursor: default;
+}
+
+@media screen and (max-width: 881px) {
+  .main__header {
+  width: 100%;
+  max-width: fit-content;
+  padding: 50px 70px 0 70px;
+  margin: 0 auto;
+  align-self: flex-start;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main__contacts {
+  display: none;
+}
+
+.main__copy-message {
+  display: none;
+}
+
+.main__navigation {
+  margin: 50px 30px 30px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+}
+
+@media screen and (max-width: 581px) {
+  .main__header {
+  padding: 40px 10px 0 10px;
+}
+
+.main__line {
+
+}
+
+.main__subtitle {
+
+}
+
+.main__navigation {
+  margin: 40px 10px 10px 10px;
+}
+}
+
+@media screen and (max-width: 441px) {
 }
 </style>
