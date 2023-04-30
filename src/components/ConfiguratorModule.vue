@@ -1,6 +1,6 @@
 <template>
   <section class="configuration">
-    <h3 class="configuration__title">Каким будет ваш новый сайт?</h3>
+    <h3 class="configuration__title">Каким будет ваш новый&nbsp;сайт?</h3>
     <div class="configuration__card-box">
       <!-- Обертка для карточек -->
       <div class="configuration__card">
@@ -104,7 +104,13 @@
             <span class="configuration__text" v-show="this.fullPrice">{{ this.fullPrice }}</span>
             &#x20bd;
           </p>
-          <p class="configuration__text">Скопировать настройки для обсуждения заказа</p>
+          <!-- <p class="configuration__text">Скопировать настройки для обсуждения заказа</p> -->
+          <div class="configuration__contacts-block" v-bind:class="{ active: isActive }">
+        <a class="configuration__contact" @click.prevent="copySettings" title="Скопировать"><img class="configuration__icon"
+            src="../images/icon-copy.svg" alt="Нажмите, чтобы скопировать"></a>
+        <a class="configuration__contact" @click.prevent="copySettings" ref="settings" value="settings"
+          title="Скопировать">Скопировать выбранные данные для обсуждения заказа</a>
+      </div>
         <!-- </div> -->
 
       </div>
@@ -117,6 +123,8 @@
 export default {
   data() {
     return {
+      isActive: false,
+      settings: '',
       mainPrice: 15000,
       multiplierDiv: 1,
       multiplierStaticOrDynamic: 1,
@@ -130,8 +138,72 @@ export default {
       let price = 0;
       price = this.mainPrice * this.multiplierDiv * this.multiplierStaticOrDynamic * this.multiplierDesign + +this.priceTheme;
       this.fullPrice = Math.trunc(price);
+
+      let priceMessage = 'Одностраничный или более, ';
+      let divMessage = '';
+      let staticOrDynamicMessage = '';
+      let designMessage = '';
+      let themeMessage = 'дизайн уже разработан.';
+
+      if (this.mainPrice === "15000.0000000001") {
+        priceMessage = 'Одностраничный или более, ';
+      } else if (this.mainPrice === "15000.000000001") {
+        priceMessage = 'Одностраничный, ';
+      } else if (this.mainPrice === "30000") {
+        priceMessage = 'До 5 страниц, ';
+      } else if (this.mainPrice === "45000") {
+        priceMessage = 'Более 5 страниц, ';
+      }
+
+      if (this.multiplierDiv === "1") {
+        divMessage = '';
+      } else if (this.multiplierDiv === "1.000000001") {
+        divMessage = 'до 3 блоков на странице, ';
+      } else if (this.multiplierDiv === "1.25") {
+        divMessage = '4-6 блоков на странице, ';
+      } else if (this.multiplierDiv === "1.5") {
+        divMessage = 'более 6 блоков на странице, ';
+      }
+
+      if (this.multiplierStaticOrDynamic === "1") {
+        staticOrDynamicMessage = '';
+      } else if (this.multiplierStaticOrDynamic === "1.000000001") {
+        staticOrDynamicMessage = 'статический, ';
+      } else if (this.multiplierStaticOrDynamic === "1.2") {
+        staticOrDynamicMessage = 'частично изменяемый, ';
+      } else if (this.multiplierStaticOrDynamic === "2.2") {
+        staticOrDynamicMessage = 'динамический, ';
+      }
+
+      if (this.multiplierDesign === "1") {
+        designMessage = 'дизайн уже разработан.';
+      } else if (this.multiplierDesign === "1.2") {
+        designMessage = 'в плане дизайна нужно соблюсти лишь общую стилистику.';
+      } else if (this.multiplierDesign === "1.5") {
+        designMessage = 'нужна проработка с дизайнером.';
+      }
+
+      if (this.priceTheme === "0") {
+        themeMessage = '';
+      } else if (this.priceTheme === "0.000000001") {
+        themeMessage = 'изменяемая тема сайта не нужна, ';
+      } else if (this.priceTheme === "5000") {
+        themeMessage = 'нужна изменяемая тема сайта, ';
+      }
+
+      this.settings = priceMessage + divMessage + staticOrDynamicMessage + themeMessage + designMessage;
+
       // debugger; // eslint-disable-line no-debugger
-    }
+    },
+    copySettings() {
+      this.calculatePrice();
+      window.navigator.clipboard.writeText(this.settings);
+
+      this.isActive = !this.isActive;
+      setTimeout(() => {
+        this.isActive = !this.isActive;
+      }, 1000)
+    },
   },
   watch: {
     mainPrice: function () {
@@ -214,6 +286,7 @@ export default {
   // border: 2px solid rgba(109, 7, 129, 0.151);
   border-radius: 10px;
   margin: 10px;
+  padding: 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 15px #0f1329;
   display: flex;
@@ -330,6 +403,50 @@ export default {
   }
 }
 
+.configuration__form-block .configuration__label {
+  max-width: 290px;
+}
+
+.configuration__contacts-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 358px;
+
+  border: 2px solid #b900ca5d;
+  border-radius: 20px;
+  padding: 10px;
+  
+  transition: border .5s ease;
+}
+
+.configuration__contacts-block:hover {
+  opacity: .8;
+  transition: opacity .5s ease;
+}
+
+.configuration__contact {
+  font-size: 18px;
+  color: #f0f8ff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.configuration__icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 0 0;
+}
+
+.configuration__icon:hover {
+  filter: blur(50%);
+}
+
+.active {
+  border: 2px solid #f6a3ff5d;
+  transition: border .5s ease;
+}
+
 @keyframes stretch-animate {
   0% {
     transform: scale(1, 1)
@@ -346,6 +463,17 @@ export default {
   100% {
     transform: scale(1, 1)
   }
+}
+
+@media screen and (max-width: 1279px) {
+  .configuration__form-block .configuration__label {
+  font-size: 16px;
+  max-width: 150px;
+}
+
+.configuration__card {
+  padding: 12px;
+}
 }
 
 @media screen and (max-width: 881px) {
@@ -399,6 +527,36 @@ export default {
 }
 
 @media screen and (max-width: 441px) {
+  .configuration {
+    margin: 0 5px;
+    padding: 12px 5px;
+}
 
+  .configuration__title {
+  font-size: 20px;
+}
+
+.configuration__text {
+  font-size: 16px;
+  padding: 0 5px;
+}
+
+.configuration__form-block .configuration__label {
+  font-size: 16px;
+  max-width: 150px;
+}
+
+.configuration__form-block {
+  padding: 0 5px 0 5px;
+}
+
+.configuration__card {
+  min-height: 350px;
+  padding-bottom: 15px;
+}
+
+.configuration__icon {
+  display: none;
+}
 }
 </style>

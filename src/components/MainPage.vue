@@ -4,7 +4,7 @@
       <div>
         <h1 class="main__title">DNKWORX</h1>
         <hr class="main__line" />
-        <p class="main__subtitle">Студия разработки сайтов Дмитрия Кочеткова</p>
+        <p class="main__subtitle">Студия разработки сайтов Дмитрия&nbsp;Кочеткова</p>
       </div>
       <div class="main__contacts">
         <div class="main__contacts-block">
@@ -24,12 +24,28 @@
     </section>
     <section class="main__navigation">
       <h3 class="main__mini-title">О студии и её основателе</h3>
-      <p class="main__text">Меня зовут Дмитрий Кочетков. Я веб-разработчик, который получил свои навыки, обучаясь в Яндексе. Чтобы
+      <p class="main__text">Меня зовут Дмитрий Кочетков. Я веб-разработчик, который получил свои навыки, обучаясь в
+        Яндексе. Чтобы
         процесс заказа сайта был удобным и понятным, я сделал для вас конфигуратор. В нём вы сможете выбрать нужные опции,
         узнать предварительную стоимость, а затем связаться со мной и получить сайт, разработанный по самым современным
         технологиям.</p>
     </section>
     <ConfiguratorModule></ConfiguratorModule>
+    <div class="main__contacts main__contacts-mobile">
+      <div class="main__contacts-block">
+        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"><img class="main__icon"
+            src="../images/icon-telegram.svg" alt="Telegram" title="Перейти в Telegram"></a>
+        <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"
+          title="Перейти в Telegram">kochetkov111</a>
+      </div>
+      <div class="main__contacts-block">
+        <a class="main__contact" @click.prevent="copyToClipboard" title="Скопировать E-mail"><img class="main__icon"
+            src="../images/icon-mail.svg" alt="Нажмите, чтобы скопировать"></a>
+        <a class="main__contact" @click.prevent="copyToClipboard" ref="email" value="dnkworx@vk.com"
+          title="Скопировать E-mail">dnkworx@vk.com</a>
+      </div>
+      <p class="main__copy-message main__copy-message-mobile" v-bind:class="{ active: isHidden }">Скопировано</p>
+    </div>
   </main>
 </template>
 
@@ -50,21 +66,44 @@ export default {
     }
   },
   mounted() {
-    // const screenHeight = window.screen.height;
-    const screenHeight = window.screen.availHeight;
+    const screenHeight = window.screen.height;
+    // const screenHeight = window.screen.availHeight;
+    // const screenHeight = document.documentElement.scrollHeight;
+
+    const screenWidth = window.screen.width;
+
+    let xOffset = 0.275;
+    let yOffset = 0.275;
+    let size = 2.75;
+    let speed = .8;
+    let amplitudeFactor = .8;
+
+    if (screenWidth < 881) {
+      xOffset = 0.25;
+      yOffset = -0.15;
+      size = .9;
+      speed = .5;
+    } else if (screenWidth < 441) {
+      xOffset = .5;
+      yOffset = -.5;
+      size = .1;
+      speed = .1;
+      amplitudeFactor = 1;
+    }
 
     this.vantaEffect = HALO({
       el: this.$refs.vantaRef,
       THREE: THREE,
       backgroundColor: 0x000b24,
-      amplitudeFactor: 0.8,
-      xOffset: 0.275,
-      yOffset: 0.275,
-      size: 2.75,
-      speed: .8,
+      amplitudeFactor: amplitudeFactor,
+      xOffset: xOffset,
+      yOffset: yOffset,
+      size: size,
+      speed: speed,
       // scaleMobile: window.devicePixelRatio,
       // scale: window.devicePixelRatio,
-      scaleMobile: 27,
+      // scaleMobile: 27,
+      scaleMobile: 46,
       scale: 0.5,
       // minHeight: 980.00,
       minHeight: screenHeight,
@@ -145,6 +184,22 @@ li {
   margin-right: 140px;
 }
 
+.main__contacts-mobile {
+  display: none;
+  align-items: center;
+  min-height: 120px;
+  margin: 20px 5px 10px 5px;
+  padding: 12px;
+  padding-top: 40px;
+
+  background-color: rgba(0, 2, 26, 0.45);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px #0f1329;
+  transition: 1s;
+
+  border-radius: 20px;
+}
+
 .main__contacts-block {
   display: flex;
   flex-direction: row;
@@ -184,6 +239,10 @@ li {
   border-radius: 0 20px 20px 20px;
 }
 
+.main__copy-message-mobile {
+  margin: 0 0 0 150px;
+}
+
 .active {
   opacity: .8;
   transition: opacity .5s ease;
@@ -216,6 +275,7 @@ li {
   max-width: fit-content;
   cursor: default;
 }
+
 .main__text {
   font-size: 17px;
   color: #f0f8ff;
@@ -226,53 +286,67 @@ li {
 
 @media screen and (max-width: 881px) {
   .main__header {
-  width: 100%;
-  max-width: fit-content;
-  padding: 50px 70px 0 70px;
-  margin: 0 auto;
-  align-self: flex-start;
+    width: 100%;
+    max-width: fit-content;
+    padding: 50px 70px 0 70px;
+    margin: 0 auto;
+    align-self: flex-start;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.main__contacts {
-  display: none;
-}
+  .main__contacts {
+    display: none;
+  }
 
-.main__copy-message {
-  display: none;
-}
+  .main__contacts-mobile {
+    display: flex;
+  }
 
-.main__navigation {
-  margin: 50px 30px 30px 30px;
+  .main__navigation {
+    margin: 50px 30px 30px 30px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
 }
 
 @media screen and (max-width: 581px) {
   .main__header {
-  padding: 40px 10px 0 10px;
-}
+    padding: 40px 10px 0 10px;
+  }
 
-.main__line {
-
-}
-
-.main__subtitle {
-
-}
-
-.main__navigation {
-  margin: 40px 10px 10px 10px;
-}
+  .main__navigation {
+    margin: 40px 10px 10px 10px;
+  }
 }
 
 @media screen and (max-width: 441px) {
+  .main__header {
+    padding: 20px 5px 0 5px;
+  }
+
+  .main__title {
+    font-size: 54px;
+  }
+
+  .main__navigation {
+    margin: 30px 5px 10px 5px;
+    padding: 12px;
+  }
+
+  .main__mini-title {
+    font-size: 20px;
+  }
+
+  .main__text {
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: justify;
+  }
 }
 </style>
