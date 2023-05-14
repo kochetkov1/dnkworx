@@ -31,6 +31,7 @@
         технологиям.</p>
     </section>
     <ConfiguratorModule></ConfiguratorModule>
+    <MyProjects></MyProjects>
     <div class="main__contacts main__contacts-mobile">
       <div class="main__contacts-block">
         <a href="http://t.me/kochetkov111" class="main__contact" target="_blank"><img class="main__icon"
@@ -53,12 +54,14 @@
 import * as THREE from "three";
 import HALO from 'vanta/dist/vanta.halo.min';
 import ConfiguratorModule from './ConfiguratorModule.vue';
+import MyProjects from './MyProjects.vue';
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 export default {
   name: 'MainPage',
   components: {
-    ConfiguratorModule
+    ConfiguratorModule,
+    MyProjects
   },
   data() {
     return {

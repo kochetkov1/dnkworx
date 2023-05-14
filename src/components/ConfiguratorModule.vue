@@ -121,6 +121,7 @@
 <script>
 
 export default {
+  name: 'ConfiguratorModule',
   data() {
     return {
       isActive: false,
