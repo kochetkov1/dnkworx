@@ -90,6 +90,18 @@ export default {
 .carousel__pagination {
   padding: 0;
 }
+
+@media screen and (max-width: 441px) {
+  .carousel__prev, .carousel__next {
+    top: 63%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .carousel__prev, .carousel__next {
+    top: 58%;
+  }
+}
 </style>
 <style lang="scss" scoped>
 .projects {
@@ -210,9 +222,17 @@ export default {
 }
 
 @media screen and (max-width: 441px) {
+  .carousel__slide {
+    padding: 0 12px 0 12px;
+  }
+
   .projects {
     margin: 10px 5px 0 5px;
     padding: 12px 5px;
+  }
+
+  .projects__image-container {
+    margin: 0 0 50px 0;
   }
 
   .projects__title {
@@ -222,9 +242,4 @@ export default {
   .projects__text {
     font-size: 16px;
   }
-
-  .carousel__slide {
-    padding: 0 35px 0 35px;
-  }
-}
-</style>
+}</style>
