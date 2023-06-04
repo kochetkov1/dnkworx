@@ -2,7 +2,7 @@
   <main ref='vantaRef' class="main">
     <section class="main__header">
       <div>
-        <h1 class="main__title">DNKWORX</h1>
+        <h1 class="main__title">KOCHETKOV</h1>
         <hr class="main__line" />
         <p class="main__subtitle">Студия разработки сайтов Дмитрия&nbsp;Кочеткова</p>
       </div>
@@ -70,6 +70,7 @@ export default {
   },
   mounted() {
     const screenHeight = window.screen.height;
+    console.log(screenHeight);
     // const screenHeight = window.screen.availHeight;
     // const screenHeight = document.documentElement.scrollHeight;
 
@@ -77,7 +78,8 @@ export default {
 
     let xOffset = 0.275;
     let yOffset = 0.275;
-    let size = 2.75;
+    // let size = 2.75;
+    let size = 1.6;
     let speed = .8;
     let amplitudeFactor = .8;
 
@@ -108,8 +110,8 @@ export default {
       // scaleMobile: 27,
       scaleMobile: 46,
       scale: 0.5,
-      // minHeight: 980.00,
-      minHeight: screenHeight,
+      minHeight: 1550.00,
+      // minHeight: screenHeight,
     })
   },
   beforeUnmount() {
@@ -166,6 +168,7 @@ li {
   font-size: 72px;
   color: #f0f8ff;
   cursor: default;
+  letter-spacing: -2px;
 }
 
 .main__line {
@@ -173,7 +176,7 @@ li {
 }
 
 .main__subtitle {
-  font-size: 17px;
+  font-size: 19px;
   color: #f0f8ff;
   margin-top: 10px;
   margin-left: 6px;
@@ -334,7 +337,7 @@ li {
   }
 
   .main__title {
-    font-size: 54px;
+    font-size: 48px;
   }
 
   .main__navigation {
